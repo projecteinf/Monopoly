@@ -5,5 +5,6 @@ namespace mba.Monopoly {
         [Key]
         [MaxLength(20)]
         public string Name { get; set; }
+        public ICollection<EstatePrices> LEstatePricesObj { get; set; }
     }
 }
