@@ -8,6 +8,7 @@ namespace mba.Monopoly
         public DbSet<Street> Streets { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.ApplyConfiguration(new EstatePriceConfiguration());
+            modelBuilder.ApplyConfiguration(new GameConfiguration());
         }
     }
 }
