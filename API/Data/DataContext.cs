@@ -10,6 +10,7 @@ namespace mba.Monopoly
             modelBuilder.ApplyConfiguration(new EstatePriceConfiguration());
             modelBuilder.ApplyConfiguration(new GameConfiguration());
             modelBuilder.ApplyConfiguration(new BoughtStreetsConfiguration());
+            modelBuilder.ApplyConfiguration(new PlayerInterchangesConfiguration());
         }
     }
 }

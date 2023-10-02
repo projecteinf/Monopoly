@@ -9,5 +9,6 @@ namespace mba.Monopoly {
         public decimal Money { get; set; }
         public Player LPlayerObj { get; set; }
         public ICollection<BoughtStreets> LBoughtStreetObj { get; set; }
+        public ICollection<PlayerInterchanges> LPlayerInterchangesObj { get; set; }
     }
 }
