@@ -9,6 +9,7 @@ namespace mba.Monopoly
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.ApplyConfiguration(new EstatePriceConfiguration());
             modelBuilder.ApplyConfiguration(new GameConfiguration());
+            modelBuilder.ApplyConfiguration(new BoughtStreetsConfiguration());
         }
     }
 }
