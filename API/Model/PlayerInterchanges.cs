@@ -12,8 +12,8 @@ namespace mba.Monopoly {
         //public DateTime GameDateTimeInterchange { get; set;}  // Game
         public DateTime InterchangeDateTime { get; set;}
         public decimal Price { get; set; }
-        public BoughtStreets BoughtStreetsObj { get; set; }
-        public Game GameObj { get; set; }
+        public BoughtStreets? BoughtStreetsObj { get; set; }
+        public Game? GameObj { get; set; }
         
     }
 }

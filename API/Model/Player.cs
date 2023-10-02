@@ -5,6 +5,6 @@ namespace mba.Monopoly {
         [Key]
         [MaxLength(30)]
         public string Name { get; set; }
-        public List<Game> LGamesPlayerObj { get; set; }
+        public List<Game>? LGamesPlayerObj { get; set; }
     }
 }

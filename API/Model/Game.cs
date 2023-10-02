@@ -7,8 +7,8 @@ namespace mba.Monopoly {
         public DateTime DateTime { get; set;}
         public int Posicio { get; set; }
         public decimal Money { get; set; }
-        public Player LPlayerObj { get; set; }
-        public ICollection<BoughtStreets> LBoughtStreetObj { get; set; }
-        public ICollection<PlayerInterchanges> LPlayerInterchangesObj { get; set; }
+        public Player? LPlayerObj { get; set; }
+        public ICollection<BoughtStreets>? LBoughtStreetObj { get; set; }
+        public ICollection<PlayerInterchanges>? LPlayerInterchangesObj { get; set; }
     }
 }
