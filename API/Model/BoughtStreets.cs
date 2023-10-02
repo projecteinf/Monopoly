@@ -4,7 +4,7 @@ namespace mba.Monopoly {
     public partial class BoughtStreets {
         [MaxLength(20)]
         public string StreetName { get; set; }
-        [MaxLength(10)]
+        [MaxLength(30)]
         public string GamePlayerName { get; set; }
         public DateTime GameDateTime { get; set;}
         public int numHouses { get; set; }
