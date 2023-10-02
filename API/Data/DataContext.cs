@@ -6,7 +6,6 @@ namespace mba.Monopoly
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         public DbSet<Player> Players { get; set; }
         public DbSet<Street> Streets { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.ApplyConfiguration(new EstatePriceConfiguration());
         }

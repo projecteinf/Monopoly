@@ -8,6 +8,6 @@ namespace mba.Monopoly {
         public decimal RentPrice { get; set; }
         public int numberOfHouses { get; set; }
         public int numberOfHotels { get; set; }
-        public virtual Street Street { get; set; }
+        public virtual Street StreetObj { get; set; }
     }
 }

@@ -6,7 +6,7 @@ namespace mba.Monopoly
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<EstatePrices> builder)
         {
             builder.HasKey(ep => new { ep.StreeName, ep.numberOfHouses, ep.numberOfHotels });
-            builder.HasOne(ep => ep.Street)
+            builder.HasOne(ep => ep.StreetObj)
                 .WithMany(s => s.LEstatePricesObj)
                 .HasForeignKey(ep => ep.StreeName).OnDelete(DeleteBehavior.Restrict);
         }
