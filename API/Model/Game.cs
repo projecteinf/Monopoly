@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace mba.Monopoly {
-    public partial class Game {
+    public class Game {
         [MaxLength(30)]
         public string PlayerName { get; set; }
         public DateTime DateTime { get; set;}
