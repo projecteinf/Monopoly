@@ -9,6 +9,31 @@ namespace mba.Monopoly
             builder.HasOne(ep => ep.StreetObj)
                 .WithMany(s => s.LEstatePricesObj)
                 .HasForeignKey(ep => ep.StreeName).OnDelete(DeleteBehavior.Restrict);
+
+            List<EstatePrices> estatePricesL = new List<EstatePrices>();
+            string[] lines = File.ReadAllLines("Data/Street.csv");
+            foreach (string line in lines.Skip(1))
+            {
+                string[] fields = line.Split(",");
+                string streetName = fields[0];
+                decimal housePrice = decimal.Parse(fields[6]);
+                for(int i=8;i<fields.Length-1;i++) {
+                    estatePricesL.Add(CrearStatePrice(streetName, i-7, 0, housePrice, decimal.Parse(fields[i])));
+                }   
+                estatePricesL.Add(CrearStatePrice(streetName, 0, 1, housePrice, decimal.Parse(fields[fields.Length-1])));             
+            }
+            builder.HasData(estatePricesL);
+        }
+
+        private EstatePrices CrearStatePrice(string streetName, int numberOfHouses, int numberOfHotels, decimal housePrice, decimal RentPrice)
+        {
+            EstatePrices estatePrice = new EstatePrices();
+            estatePrice.StreeName = streetName;
+            estatePrice.numberOfHouses = numberOfHouses;
+            estatePrice.numberOfHotels = numberOfHotels;
+            estatePrice.Price = housePrice;
+            estatePrice.RentPrice = RentPrice;
+            return estatePrice;
         }
     }
 }
