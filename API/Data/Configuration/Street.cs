@@ -6,6 +6,10 @@ namespace mba.Monopoly
     public class StreetConfiguration : IEntityTypeConfiguration<Street> {
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Street> builder)
         {
+            builder.Property("Price").HasColumnType("decimal(18,2)");
+            builder.Property("Mortage").HasColumnType("decimal(18,2)");
+            builder.Property("RentPrice").HasColumnType("decimal(18,2)");
+            
             List<Street> streets = File.ReadAllLines("Data/Street.csv")
             .Skip(1)
             .Select(line => line.Split(","))

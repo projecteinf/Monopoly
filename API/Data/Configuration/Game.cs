@@ -6,6 +6,7 @@ namespace mba.Monopoly
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Game> builder)
         {
             builder.HasKey(g => new { g.PlayerName, g.DateTime });
+            builder.Property("Money").HasColumnType("decimal(18,2)");
             builder.HasOne(g => g.LPlayerObj)
                 .WithMany(p => p.LGamesPlayerObj)
                 .HasForeignKey(g => g.PlayerName).OnDelete(DeleteBehavior.Restrict);

@@ -10,6 +10,9 @@ namespace mba.Monopoly
                 .WithMany(s => s.LEstatePricesObj)
                 .HasForeignKey(ep => ep.StreeName).OnDelete(DeleteBehavior.Restrict);
 
+            builder.Property("Price").HasColumnType("decimal(18,2)");
+            builder.Property("RentPrice").HasColumnType("decimal(18,2)");
+
             List<EstatePrices> estatePricesL = new List<EstatePrices>();
             string[] lines = File.ReadAllLines("Data/Street.csv");
             foreach (string line in lines.Skip(1))

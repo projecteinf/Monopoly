@@ -7,6 +7,7 @@ namespace mba.Monopoly
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PlayerInterchanges> builder)
         {
             builder.HasKey(pi => new { pi.StreetName, pi.BSPlayerName, pi.BSPlayerDateTime, pi.GamePlayerNameInterchange, pi.InterchangeDateTime });
+            builder.Property("Price").HasColumnType("decimal(18,2)");
             builder.HasOne(pi => pi.BoughtStreetsObj)
                 .WithMany(bs => bs.LPlayerInterchangesObj)
                 .HasForeignKey(pi => new {pi.StreetName, pi.BSPlayerName, pi.BSPlayerDateTime}).OnDelete(DeleteBehavior.Restrict);
