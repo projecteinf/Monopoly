@@ -17,20 +17,14 @@ namespace Monopoly.Controllers
     {
         private readonly DataContext _context;
 
-        public GameController(DataContext context)
-        {
-            _context = context;
-        }
+        public GameController(DataContext context) { _context = context; }
 
         // GET: api/Game
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Game>>> GetGames()
         {
-          if (_context.Games == null)
-          {
-              return NotFound();
-          }
-            return await _context.Games.ToListAsync();
+          if (_context.Games == null) return NotFound();
+          else return await _context.Games.ToListAsync();
         }
 
 
@@ -38,20 +32,17 @@ namespace Monopoly.Controllers
         [HttpGet("{DateTime}")]
         public async Task<ActionResult<IEnumerable<Object>>> GetGame(DateTime DateTime)
         {
-            if (_context.Games == null)
-            {
-                return NotFound();
+            if (_context.Games == null) return NotFound();
+            else {
+                    var query = from g in _context.Games
+                                    where g.DateTime == DateTime
+                                    select new {
+                                        PlayerName = g.PlayerName,
+                                        Posicio = g.Posicio,
+                                        Money = g.Money
+                                    };
+                    return await query.ToListAsync();
             }
-
-            var query = from g in _context.Games
-                        where g.DateTime == DateTime
-                        select new {
-                            PlayerName = g.PlayerName,
-                            Posicio = g.Posicio,
-                            Money = g.Money
-                        };
-            return await query.ToListAsync();
-            
         }
 
 
@@ -71,6 +62,36 @@ namespace Monopoly.Controllers
             }
 
             return Game;
+        }
+
+
+        [HttpGet("{PlayerName}/{DateTime}/{StreetName}")]
+        public async Task<ActionResult<Game>> Buy(string PlayerName, DateTime DateTime, string StreetName)
+        {
+            if (_context.Players == null || _context.Streets == null) return Problem("Entity set 'DataContext.Players' or 'DataContext.Streets' is null.");
+
+            Game game = await _context.Games.Include(g=>g.LBoughtStreetObj)
+                                .FirstOrDefaultAsync(g => g.PlayerName == PlayerName && g.DateTime == DateTime);
+            
+            Street street = await _context.Streets.FindAsync(StreetName);            
+            List<BoughtStreets> boughtStreets = await _context.BoughtStreets.Where(bs => bs.GameDateTime == DateTime && bs.StreetName == StreetName).ToListAsync();
+            if (boughtStreets.Count > 0) return BadRequest("This street is already bought.");
+            else return await boughtStreet(game, street);            
+        }
+
+        private async Task<ActionResult<Game>> boughtStreet(Game game,Street street) {
+            game.Money -= street.Price;
+
+            _context.Entry(game).State = EntityState.Modified;
+
+            game.LBoughtStreetObj.Add(
+                new BoughtStreets { StreetName = street.Name, GamePlayerName = game.PlayerName, 
+                                    GameDateTime = game.DateTime, StreetObj = street, GameObj = game });
+
+            try { await _context.SaveChangesAsync(); }
+            catch (DbUpdateConcurrencyException) { throw; }
+
+            return game;
         }
 
         // PUT: api/Game/5
