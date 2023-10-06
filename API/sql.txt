@@ -1,61 +1,21 @@
 Build started...
 Build succeeded.
 The Entity Framework tools version '7.0.9' is older than that of the runtime '7.0.11'. Update the tools for the latest features and bug fixes. See https://aka.ms/AAc1fbw for more information.
-warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
-      No store type was specified for the decimal property 'Price' on entity type 'EstatePrices'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
-warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
-      No store type was specified for the decimal property 'RentPrice' on entity type 'EstatePrices'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
-warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
-      No store type was specified for the decimal property 'Money' on entity type 'Game'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
-warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
-      No store type was specified for the decimal property 'Price' on entity type 'PlayerInterchanges'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
-warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
-      No store type was specified for the decimal property 'Price' on entity type 'EstatePrices'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
-No store type was specified for the decimal property 'Price' on entity type 'EstatePrices'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
-warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
-      No store type was specified for the decimal property 'RentPrice' on entity type 'EstatePrices'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
-No store type was specified for the decimal property 'RentPrice' on entity type 'EstatePrices'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
-warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
-      No store type was specified for the decimal property 'Money' on entity type 'Game'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
-No store type was specified for the decimal property 'Money' on entity type 'Game'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
-warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
-      No store type was specified for the decimal property 'Price' on entity type 'PlayerInterchanges'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
-No store type was specified for the decimal property 'Price' on entity type 'PlayerInterchanges'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
 Done. To undo this action, use 'ef migrations remove'
 Build started...
 Build succeeded.
 The Entity Framework tools version '7.0.9' is older than that of the runtime '7.0.11'. Update the tools for the latest features and bug fixes. See https://aka.ms/AAc1fbw for more information.
-warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
-      No store type was specified for the decimal property 'Price' on entity type 'EstatePrices'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
-warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
-      No store type was specified for the decimal property 'RentPrice' on entity type 'EstatePrices'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
-warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
-      No store type was specified for the decimal property 'Money' on entity type 'Game'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
-warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
-      No store type was specified for the decimal property 'Price' on entity type 'PlayerInterchanges'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
-warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
-      No store type was specified for the decimal property 'Price' on entity type 'EstatePrices'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
-No store type was specified for the decimal property 'Price' on entity type 'EstatePrices'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
-No store type was specified for the decimal property 'RentPrice' on entity type 'EstatePrices'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
-      No store type was specified for the decimal property 'RentPrice' on entity type 'EstatePrices'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
-
-No store type was specified for the decimal property 'Money' on entity type 'Game'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
-warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
-      No store type was specified for the decimal property 'Money' on entity type 'Game'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
-warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
-      No store type was specified for the decimal property 'Price' on entity type 'PlayerInterchanges'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
-No store type was specified for the decimal property 'Price' on entity type 'PlayerInterchanges'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (500ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+      Executed DbCommand (476ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
       CREATE DATABASE [MonopolyDB];
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (191ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+      Executed DbCommand (274ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
       IF SERVERPROPERTY('EngineEdition') <> 5
       BEGIN
           ALTER DATABASE [MonopolyDB] SET READ_COMMITTED_SNAPSHOT ON;
       END;
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (19ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      Executed DbCommand (20ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
       SELECT 1
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
       Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
@@ -65,10 +25,10 @@ info: Microsoft.EntityFrameworkCore.Database.Command[20101]
           CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
       );
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
       SELECT 1
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (35ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      Executed DbCommand (33ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
       SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
       Executed DbCommand (22ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
@@ -76,8 +36,8 @@ info: Microsoft.EntityFrameworkCore.Database.Command[20101]
       FROM [__EFMigrationsHistory]
       ORDER BY [MigrationId];
 info: Microsoft.EntityFrameworkCore.Migrations[20402]
-      Applying migration '20231002180440_Game'.
-Applying migration '20231002180440_Game'.
+      Applying migration '20231006130658_Initial'.
+Applying migration '20231006130658_Initial'.
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
       Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
       CREATE TABLE [Players] (
@@ -85,17 +45,21 @@ info: Microsoft.EntityFrameworkCore.Database.Command[20101]
           CONSTRAINT [PK_Players] PRIMARY KEY ([Name])
       );
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
       CREATE TABLE [Streets] (
           [Name] nvarchar(20) NOT NULL,
           [Color] nvarchar(10) NOT NULL,
-          [StreetGroupName] nvarchar(20) NULL,
+          [Position] int NOT NULL,
+          [StreetGroupName] nvarchar(max) NULL,
+          [Price] decimal(18,2) NOT NULL,
+          [Mortage] decimal(18,2) NOT NULL,
+          [RentPrice] decimal(18,2) NOT NULL,
           [StreetName] nvarchar(20) NULL,
           CONSTRAINT [PK_Streets] PRIMARY KEY ([Name]),
           CONSTRAINT [FK_Streets_Streets_StreetName] FOREIGN KEY ([StreetName]) REFERENCES [Streets] ([Name])
       );
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
       CREATE TABLE [Games] (
           [PlayerName] nvarchar(30) NOT NULL,
           [DateTime] datetime2 NOT NULL,
@@ -105,7 +69,7 @@ info: Microsoft.EntityFrameworkCore.Database.Command[20101]
           CONSTRAINT [FK_Games_Players_PlayerName] FOREIGN KEY ([PlayerName]) REFERENCES [Players] ([Name]) ON DELETE NO ACTION
       );
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
       CREATE TABLE [EstatePrices] (
           [StreeName] nvarchar(20) NOT NULL,
           [numberOfHouses] int NOT NULL,
@@ -116,7 +80,7 @@ info: Microsoft.EntityFrameworkCore.Database.Command[20101]
           CONSTRAINT [FK_EstatePrices_Streets_StreeName] FOREIGN KEY ([StreeName]) REFERENCES [Streets] ([Name]) ON DELETE NO ACTION
       );
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
       CREATE TABLE [BoughtStreets] (
           [StreetName] nvarchar(20) NOT NULL,
           [GamePlayerName] nvarchar(30) NOT NULL,
@@ -128,29 +92,73 @@ info: Microsoft.EntityFrameworkCore.Database.Command[20101]
           CONSTRAINT [FK_BoughtStreets_Streets_StreetName] FOREIGN KEY ([StreetName]) REFERENCES [Streets] ([Name]) ON DELETE NO ACTION
       );
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
       CREATE TABLE [PlayerInterchanges] (
           [StreetName] nvarchar(20) NOT NULL,
-          [BSPlayerName] nvarchar(30) NOT NULL,
-          [BSPlayerDateTime] datetime2 NOT NULL,
-          [GamePlayerNameInterchange] nvarchar(30) NOT NULL,
+          [SellerPlayerName] nvarchar(30) NOT NULL,
+          [PlayerDateTime] datetime2 NOT NULL,
+          [BuyerPlayerName] nvarchar(30) NOT NULL,
           [InterchangeDateTime] datetime2 NOT NULL,
           [Price] decimal(18,2) NOT NULL,
-          CONSTRAINT [PK_PlayerInterchanges] PRIMARY KEY ([StreetName], [BSPlayerName], [BSPlayerDateTime], [GamePlayerNameInterchange], [InterchangeDateTime]),
-          CONSTRAINT [FK_PlayerInterchanges_BoughtStreets_StreetName_BSPlayerName_BSPlayerDateTime] FOREIGN KEY ([StreetName], [BSPlayerName], [BSPlayerDateTime]) REFERENCES [BoughtStreets] ([StreetName], [GamePlayerName], [GameDateTime]) ON DELETE NO ACTION,
-          CONSTRAINT [FK_PlayerInterchanges_Games_GamePlayerNameInterchange_BSPlayerDateTime] FOREIGN KEY ([GamePlayerNameInterchange], [BSPlayerDateTime]) REFERENCES [Games] ([PlayerName], [DateTime]) ON DELETE NO ACTION
+          CONSTRAINT [PK_PlayerInterchanges] PRIMARY KEY ([StreetName], [SellerPlayerName], [PlayerDateTime], [BuyerPlayerName], [InterchangeDateTime]),
+          CONSTRAINT [FK_PlayerInterchanges_BoughtStreets_StreetName_SellerPlayerName_PlayerDateTime] FOREIGN KEY ([StreetName], [SellerPlayerName], [PlayerDateTime]) REFERENCES [BoughtStreets] ([StreetName], [GamePlayerName], [GameDateTime]) ON DELETE CASCADE,
+          CONSTRAINT [FK_PlayerInterchanges_Games_BuyerPlayerName_PlayerDateTime] FOREIGN KEY ([BuyerPlayerName], [PlayerDateTime]) REFERENCES [Games] ([PlayerName], [DateTime]) ON DELETE NO ACTION
       );
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      CREATE INDEX [IX_BoughtStreets_GamePlayerName_GameDateTime] ON [BoughtStreets] ([GamePlayerName], [GameDateTime]);
+      Executed DbCommand (113ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Name', N'Color', N'Mortage', N'Position', N'Price', N'RentPrice', N'StreetGroupName', N'StreetName') AND [object_id] = OBJECT_ID(N'[Streets]'))
+          SET IDENTITY_INSERT [Streets] ON;
+      INSERT INTO [Streets] ([Name], [Color], [Mortage], [Position], [Price], [RentPrice], [StreetGroupName], [StreetName])
+      VALUES (N'Baltic', N'purple', 30.0, 3, 60.0, 4.0, N'Mediterranean', NULL),
+      (N'Connecticut', N'lightblue', 60.0, 9, 120.0, 8.0, N'Vermont', NULL),
+      (N'Mediterranean', N'purple', 30.0, 1, 60.0, 2.0, N'Mediterranean', NULL),
+      (N'Oriental', N'lightblue', 50.0, 6, 100.0, 6.0, N'Mediterranean', NULL),
+      (N'Vermont', N'lightblue', 50.0, 8, 100.0, 6.0, N'Vermont', NULL);
+      IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Name', N'Color', N'Mortage', N'Position', N'Price', N'RentPrice', N'StreetGroupName', N'StreetName') AND [object_id] = OBJECT_ID(N'[Streets]'))
+          SET IDENTITY_INSERT [Streets] OFF;
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      CREATE INDEX [IX_PlayerInterchanges_GamePlayerNameInterchange_BSPlayerDateTime] ON [PlayerInterchanges] ([GamePlayerNameInterchange], [BSPlayerDateTime]);
+      Executed DbCommand (43ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'StreeName', N'numberOfHotels', N'numberOfHouses', N'Price', N'RentPrice') AND [object_id] = OBJECT_ID(N'[EstatePrices]'))
+          SET IDENTITY_INSERT [EstatePrices] ON;
+      INSERT INTO [EstatePrices] ([StreeName], [numberOfHotels], [numberOfHouses], [Price], [RentPrice])
+      VALUES (N'Baltic', 1, 0, 50.0, 450.0),
+      (N'Baltic', 0, 1, 50.0, 20.0),
+      (N'Baltic', 0, 2, 50.0, 60.0),
+      (N'Baltic', 0, 3, 50.0, 180.0),
+      (N'Baltic', 0, 4, 50.0, 320.0),
+      (N'Connecticut', 1, 0, 50.0, 600.0),
+      (N'Connecticut', 0, 1, 50.0, 40.0),
+      (N'Connecticut', 0, 2, 50.0, 100.0),
+      (N'Connecticut', 0, 3, 50.0, 300.0),
+      (N'Connecticut', 0, 4, 50.0, 450.0),
+      (N'Mediterranean', 1, 0, 50.0, 250.0),
+      (N'Mediterranean', 0, 1, 50.0, 10.0),
+      (N'Mediterranean', 0, 2, 50.0, 30.0),
+      (N'Mediterranean', 0, 3, 50.0, 90.0),
+      (N'Mediterranean', 0, 4, 50.0, 160.0),
+      (N'Oriental', 1, 0, 50.0, 550.0),
+      (N'Oriental', 0, 1, 50.0, 30.0),
+      (N'Oriental', 0, 2, 50.0, 90.0),
+      (N'Oriental', 0, 3, 50.0, 270.0),
+      (N'Oriental', 0, 4, 50.0, 400.0),
+      (N'Vermont', 1, 0, 50.0, 550.0),
+      (N'Vermont', 0, 1, 50.0, 30.0),
+      (N'Vermont', 0, 2, 50.0, 90.0),
+      (N'Vermont', 0, 3, 50.0, 270.0),
+      (N'Vermont', 0, 4, 50.0, 400.0);
+      IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'StreeName', N'numberOfHotels', N'numberOfHouses', N'Price', N'RentPrice') AND [object_id] = OBJECT_ID(N'[EstatePrices]'))
+          SET IDENTITY_INSERT [EstatePrices] OFF;
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
       Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      CREATE INDEX [IX_Streets_StreetName] ON [Streets] ([StreetName]);
+      CREATE INDEX [IX_BoughtStreets_GamePlayerName_GameDateTime] ON [BoughtStreets] ([GamePlayerName], [GameDateTime]);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX [IX_PlayerInterchanges_BuyerPlayerName_PlayerDateTime] ON [PlayerInterchanges] ([BuyerPlayerName], [PlayerDateTime]);
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
       Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX [IX_Streets_StreetName] ON [Streets] ([StreetName]);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
       INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-      VALUES (N'20231002180440_Game', N'7.0.11');
+      VALUES (N'20231006130658_Initial', N'7.0.11');
 Done.
