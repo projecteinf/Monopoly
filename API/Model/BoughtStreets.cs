@@ -9,6 +9,7 @@ namespace mba.Monopoly {
         public DateTime GameDateTime { get; set;}
         public int numHouses { get; set; }
         public int numHotels { get; set; }
+        public bool isMotaged { get; set; }
         public Street? StreetObj { get; set; }
         public Game? GameObj { get; set; }
         public ICollection<PlayerInterchanges>? LPlayerInterchangesObj { get; set; }
