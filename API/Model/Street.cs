@@ -19,6 +19,5 @@ namespace mba.Monopoly {
         public ICollection<StreetGroup>? LStreetGroupObjR { get; set; }
         public ICollection<EstatePrices>? LEstatePricesObj { get; set; }
         public ICollection<BoughtStreets>? LBoughtStreetsObj { get; set; }
-        
     }
 }

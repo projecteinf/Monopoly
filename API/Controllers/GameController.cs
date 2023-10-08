@@ -82,24 +82,19 @@ namespace Monopoly.Controllers
         [HttpGet("{PlayerName}/{DateTime}/{StreetName}")]
         public async Task<ActionResult<Game>> Buy(string PlayerName, DateTime DateTime, string StreetName)
         {
-            if (_context.Players == null || _context.Streets == null) return Problem("Entity set 'DataContext.Players' or 'DataContext.Streets' is null.");
-
-            Game game = await _context.Games.Include(g=>g.LBoughtStreetObj)
-                                .FirstOrDefaultAsync(g => g.PlayerName == PlayerName && g.DateTime == DateTime);
-
+            Game game = await _context.Games.FirstOrDefaultAsync(g => g.PlayerName == PlayerName && g.DateTime == DateTime);
             Street street = await _context.Streets.FindAsync(StreetName);
-            if (!game.HasAvailable(street)) return BadRequest("Seller has no money.");        
+            List<BoughtStreets> boughtStreets = await _context.BoughtStreets.Where(bs => bs.GameDateTime == DateTime).ToListAsync();
 
-            List<BoughtStreets> boughtStreets = await _context.BoughtStreets.Where(bs => bs.GameDateTime == DateTime && bs.StreetName == StreetName).ToListAsync();
-            if (boughtStreets.Count > 0) return BadRequest("This street is already bought.");
-            else return await boughtStreet(game, street);            
+            if (!game.HasAvailable(street)) return BadRequest("Seller has no money.");
+            else
+                if (street.Sold(boughtStreets)) return BadRequest("This street is already sold.");
+                else return await boughtStreet(game, street);            
         }
 
         [HttpGet("{Seller}/{Buyer}/{DateTime}/{StreetName}/{Money}")]
         public async Task<ActionResult<PlayerInterchanges>> Interchange(string Seller,string Buyer, DateTime DateTime, string StreetName, decimal Money)
         {
-            if (_context.Players == null || _context.Streets == null) return Problem("Entity set 'DataContext.Players' or 'DataContext.Streets' is null.");
-
             Game buyerObj = await _context.Games.Include(g=>g.LBoughtStreetObj)
                                 .FirstOrDefaultAsync(g => g.PlayerName == Buyer && g.DateTime == DateTime);
 
@@ -173,7 +168,9 @@ namespace Monopoly.Controllers
             game.Money -= street.Price;
 
             _context.Entry(game).State = EntityState.Modified;
-
+            
+            if (game.LBoughtStreetObj == null) game.LBoughtStreetObj = new List<BoughtStreets>();
+            
             game.LBoughtStreetObj.Add(
                 new BoughtStreets { StreetName = street.Name, GamePlayerName = game.PlayerName, 
                                     GameDateTime = game.DateTime, StreetObj = street, GameObj = game });
@@ -184,36 +181,7 @@ namespace Monopoly.Controllers
             return game;
         }
 
-        // PUT: api/Game/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{playerName}/{dateTime}")]
-        public async Task<IActionResult> PutGame(string PlayerName, DateTime DateTime, Game Game)
-        {
-            if (PlayerName != Game.PlayerName || DateTime != Game.DateTime)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(Game).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!GameExists(PlayerName, DateTime))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        } 
+        
 
         // POST: api/Game
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -245,26 +213,7 @@ namespace Monopoly.Controllers
             return CreatedAtAction("GetGame", new { PlayerName=Game.PlayerName, DateTime=Game.DateTime }, Game);
         } 
 
-        // DELETE: api/Game/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteGame(string PlayerName, DateTime DateTime)
-        {
-            if (_context.Games == null)
-            {
-                return NotFound();
-            }
-            var Game = await _context.Games.FindAsync(PlayerName, DateTime);
-            if (Game == null)
-            {
-                return NotFound();
-            }
-
-            _context.Games.Remove(Game);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
+        
         private bool GameExists(string PlayerName, DateTime DateTime)
         {
             return (_context.Games?
