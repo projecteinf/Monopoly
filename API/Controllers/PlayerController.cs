@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using mba.Monopoly;
@@ -31,15 +26,17 @@ namespace Monopoly.Controllers
             return await _context.Players.ToListAsync();
         }
 
-        // GET: api/Player/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Player>> GetPlayer(string id)
+
+        // GET: api/Player/Miquel
+
+        [HttpGet("{Name}")]
+        public async Task<ActionResult<Player>> GetPlayer(string name)
         {
           if (_context.Players == null)
           {
               return NotFound();
           }
-            var player = await _context.Players.FindAsync(id);
+            var player = await _context.Players.FindAsync(name);
 
             if (player == null)
             {
@@ -48,90 +45,27 @@ namespace Monopoly.Controllers
 
             return player;
         }
-
-        // PUT: api/Player/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutPlayer(string id, Player player)
-        {
-            if (id != player.Name)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(player).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PlayerExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
         // POST: api/Player
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Player>> PostPlayer(Player player)
         {
-          if (_context.Players == null)
-          {
-              return Problem("Entity set 'DataContext.Players'  is null.");
-          }
+            if (_context.Players == null) return Problem("Entity set 'DataContext.Players'  is null.");
+
             _context.Players.Add(player);
-            try
-            {
+            try {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateException)
-            {
-                if (PlayerExists(player.Name))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
+            catch (DbUpdateException) {
+                if (PlayerExists(player.Name)) return Conflict();
+                else throw;
             }
 
-            return CreatedAtAction("GetPlayer", new { id = player.Name }, player);
+            return CreatedAtAction("GetPlayer", new { Name = player.Name }, player);
         }
-
-        // DELETE: api/Player/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePlayer(string id)
+        private bool PlayerExists(string name)
         {
-            if (_context.Players == null)
-            {
-                return NotFound();
-            }
-            var player = await _context.Players.FindAsync(id);
-            if (player == null)
-            {
-                return NotFound();
-            }
-
-            _context.Players.Remove(player);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool PlayerExists(string id)
-        {
-            return (_context.Players?.Any(e => e.Name == id)).GetValueOrDefault();
+            return (_context.Players?.Any(e => e.Name == name)).GetValueOrDefault();
         }
     }
 }
