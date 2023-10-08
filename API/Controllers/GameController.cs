@@ -92,6 +92,31 @@ namespace Monopoly.Controllers
                 else return await boughtStreet(game, street);            
         }
 
+        [HttpGet("BuildHouse/{PlayerName}/{DateTime}/{StreetName}")]
+        public async Task<ActionResult<Game>> BuildHouse(string PlayerName, DateTime DateTime, string StreetName)
+        {
+            Game game = await _context.Games.FirstOrDefaultAsync(g => g.PlayerName == PlayerName && g.DateTime == DateTime);
+            List<PlayerInterchanges> interchanges = _context.PlayerInterchanges.Where(pi => pi.StreetName == StreetName && pi.PlayerDateTime == DateTime).ToList();
+            Street street = await _context.Streets.FindAsync(StreetName);
+            List<StreetGroup> streetGroups = await _context.StreetGroups.Where(sg => sg.Name == StreetName).ToListAsync();
+            List<BoughtStreets> boughtStreets = await _context.BoughtStreets.Where(bs => bs.GameDateTime == DateTime).ToListAsync();
+            
+            if (street.boughtAllGroup(boughtStreets,streetGroups)) {
+                if (game.HasStreet(interchanges,game.LBoughtStreetObj,StreetName)) {
+                
+                }
+                else return BadRequest("Seller has no street.");
+            }
+            else return BadRequest("Seller has not all the streets.");
+
+            
+
+            if (!game.HasAvailable(street)) return BadRequest("Seller has no money.");
+            else
+                if (street.Sold(boughtStreets)) return BadRequest("This street is already sold.");
+                else return await boughtStreet(game, street);            
+        }
+
         [HttpGet("{Seller}/{Buyer}/{DateTime}/{StreetName}/{Money}")]
         public async Task<ActionResult<PlayerInterchanges>> Interchange(string Seller,string Buyer, DateTime DateTime, string StreetName, decimal Money)
         {
@@ -112,20 +137,7 @@ namespace Monopoly.Controllers
             }
             else return BadRequest("Seller has no street.");
         }
-        private bool hasStreet(Game Player, DateTime DateTime, string StreetName) {
-            List<PlayerInterchanges> interchanges = _context.PlayerInterchanges.Where(pi => pi.StreetName == StreetName && pi.PlayerDateTime == DateTime).ToList();
-            
-            if (interchanges.Count > 0) {
-                PlayerInterchanges lastInterchange = interchanges.OrderByDescending(pi => pi.InterchangeDateTime).First();
-                if (lastInterchange!=null) return lastInterchange.BuyerPlayerName == Player.PlayerName;
-                else return false;
-            }
-            else {
-                if (Player.LBoughtStreetObj == null) return false;
-                else return Player.LBoughtStreetObj.ToList().Find(bs => bs.StreetName == StreetName) != null;
-            } 
-        }
-
+        
         private async Task<ActionResult<PlayerInterchanges>> interchangeStreet(Game seller,Game buyer,Street street,decimal Money) {
             buyer.Money -= Money;
             seller.Money += Money;

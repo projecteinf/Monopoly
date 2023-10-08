@@ -12,6 +12,7 @@ namespace mba.Monopoly
         public DbSet<BoughtStreets> BoughtStreets { get; set; } = default!;
         public DbSet<EstatePrices> EstatePrices { get; set; } = default!;
         public DbSet<PlayerInterchanges> PlayerInterchanges { get; set; } = default!;
+        public DbSet<StreetGroup> StreetGroups { get; set; } = default!;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             optionsBuilder.EnableSensitiveDataLogging();
         }
