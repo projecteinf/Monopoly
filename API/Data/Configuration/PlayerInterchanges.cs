@@ -8,6 +8,7 @@ namespace mba.Monopoly
         {
             builder.HasKey(pi => new { pi.StreetName, pi.SellerPlayerName, pi.PlayerDateTime, pi.BuyerPlayerName, pi.InterchangeDateTime });
             builder.Property("Price").HasColumnType("decimal(18,2)");
+            
             builder.HasOne(pi => pi.BoughtStreetsObj)
                 .WithMany(bs => bs.LPlayerInterchangesObj)
                 .HasForeignKey(pi => new {pi.StreetName, pi.SellerPlayerName, pi.PlayerDateTime}).OnDelete(DeleteBehavior.Cascade);

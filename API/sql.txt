@@ -1,164 +1,68 @@
 Build started...
 Build succeeded.
 The Entity Framework tools version '7.0.9' is older than that of the runtime '7.0.11'. Update the tools for the latest features and bug fixes. See https://aka.ms/AAc1fbw for more information.
-Done. To undo this action, use 'ef migrations remove'
+The name 'Relació entre carrers amb dades i taula creada' is used by an existing migration.
 Build started...
 Build succeeded.
 The Entity Framework tools version '7.0.9' is older than that of the runtime '7.0.11'. Update the tools for the latest features and bug fixes. See https://aka.ms/AAc1fbw for more information.
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (476ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
-      CREATE DATABASE [MonopolyDB];
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (274ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
-      IF SERVERPROPERTY('EngineEdition') <> 5
-      BEGIN
-          ALTER DATABASE [MonopolyDB] SET READ_COMMITTED_SNAPSHOT ON;
-      END;
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (20ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      Executed DbCommand (44ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
       SELECT 1
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      CREATE TABLE [__EFMigrationsHistory] (
-          [MigrationId] nvarchar(150) NOT NULL,
-          [ProductVersion] nvarchar(32) NOT NULL,
-          CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
-      );
+      Executed DbCommand (14ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
       Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
       SELECT 1
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (33ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
       SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (22ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
       SELECT [MigrationId], [ProductVersion]
       FROM [__EFMigrationsHistory]
       ORDER BY [MigrationId];
 info: Microsoft.EntityFrameworkCore.Migrations[20402]
-      Applying migration '20231006130658_Initial'.
-Applying migration '20231006130658_Initial'.
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      CREATE TABLE [Players] (
-          [Name] nvarchar(30) NOT NULL,
-          CONSTRAINT [PK_Players] PRIMARY KEY ([Name])
-      );
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      CREATE TABLE [Streets] (
-          [Name] nvarchar(20) NOT NULL,
-          [Color] nvarchar(10) NOT NULL,
-          [Position] int NOT NULL,
-          [StreetGroupName] nvarchar(max) NULL,
-          [Price] decimal(18,2) NOT NULL,
-          [Mortage] decimal(18,2) NOT NULL,
-          [RentPrice] decimal(18,2) NOT NULL,
-          [StreetName] nvarchar(20) NULL,
-          CONSTRAINT [PK_Streets] PRIMARY KEY ([Name]),
-          CONSTRAINT [FK_Streets_Streets_StreetName] FOREIGN KEY ([StreetName]) REFERENCES [Streets] ([Name])
-      );
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      CREATE TABLE [Games] (
-          [PlayerName] nvarchar(30) NOT NULL,
-          [DateTime] datetime2 NOT NULL,
-          [Posicio] int NOT NULL,
-          [Money] decimal(18,2) NOT NULL,
-          CONSTRAINT [PK_Games] PRIMARY KEY ([PlayerName], [DateTime]),
-          CONSTRAINT [FK_Games_Players_PlayerName] FOREIGN KEY ([PlayerName]) REFERENCES [Players] ([Name]) ON DELETE NO ACTION
-      );
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      CREATE TABLE [EstatePrices] (
-          [StreeName] nvarchar(20) NOT NULL,
-          [numberOfHouses] int NOT NULL,
-          [numberOfHotels] int NOT NULL,
-          [Price] decimal(18,2) NOT NULL,
-          [RentPrice] decimal(18,2) NOT NULL,
-          CONSTRAINT [PK_EstatePrices] PRIMARY KEY ([StreeName], [numberOfHouses], [numberOfHotels]),
-          CONSTRAINT [FK_EstatePrices_Streets_StreeName] FOREIGN KEY ([StreeName]) REFERENCES [Streets] ([Name]) ON DELETE NO ACTION
-      );
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      CREATE TABLE [BoughtStreets] (
-          [StreetName] nvarchar(20) NOT NULL,
-          [GamePlayerName] nvarchar(30) NOT NULL,
-          [GameDateTime] datetime2 NOT NULL,
-          [numHouses] int NOT NULL,
-          [numHotels] int NOT NULL,
-          CONSTRAINT [PK_BoughtStreets] PRIMARY KEY ([StreetName], [GamePlayerName], [GameDateTime]),
-          CONSTRAINT [FK_BoughtStreets_Games_GamePlayerName_GameDateTime] FOREIGN KEY ([GamePlayerName], [GameDateTime]) REFERENCES [Games] ([PlayerName], [DateTime]) ON DELETE NO ACTION,
-          CONSTRAINT [FK_BoughtStreets_Streets_StreetName] FOREIGN KEY ([StreetName]) REFERENCES [Streets] ([Name]) ON DELETE NO ACTION
-      );
+      Applying migration '20231007095419_Relació entre carrers amb dades i taula creada'.
+Applying migration '20231007095419_Relació entre carrers amb dades i taula creada'.
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
       Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      CREATE TABLE [PlayerInterchanges] (
-          [StreetName] nvarchar(20) NOT NULL,
-          [SellerPlayerName] nvarchar(30) NOT NULL,
-          [PlayerDateTime] datetime2 NOT NULL,
-          [BuyerPlayerName] nvarchar(30) NOT NULL,
-          [InterchangeDateTime] datetime2 NOT NULL,
-          [Price] decimal(18,2) NOT NULL,
-          CONSTRAINT [PK_PlayerInterchanges] PRIMARY KEY ([StreetName], [SellerPlayerName], [PlayerDateTime], [BuyerPlayerName], [InterchangeDateTime]),
-          CONSTRAINT [FK_PlayerInterchanges_BoughtStreets_StreetName_SellerPlayerName_PlayerDateTime] FOREIGN KEY ([StreetName], [SellerPlayerName], [PlayerDateTime]) REFERENCES [BoughtStreets] ([StreetName], [GamePlayerName], [GameDateTime]) ON DELETE CASCADE,
-          CONSTRAINT [FK_PlayerInterchanges_Games_BuyerPlayerName_PlayerDateTime] FOREIGN KEY ([BuyerPlayerName], [PlayerDateTime]) REFERENCES [Games] ([PlayerName], [DateTime]) ON DELETE NO ACTION
+      DROP TABLE [StreetStreet];
+fail: Microsoft.EntityFrameworkCore.Database.Command[20102]
+      Failed executing DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE [StreetRelated] (
+          [Name] nvarchar(20) NOT NULL,
+          [NameR] nvarchar(20) NOT NULL,
+          CONSTRAINT [PK_StreetRelated] PRIMARY KEY ([Name], [NameR]),
+          CONSTRAINT [FK_StreetRelated_Streets_Name] FOREIGN KEY ([Name]) REFERENCES [Streets] ([Name]) ON DELETE CASCADE,
+          CONSTRAINT [FK_StreetRelated_Streets_NameR] FOREIGN KEY ([NameR]) REFERENCES [Streets] ([Name]) ON DELETE CASCADE
       );
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (113ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Name', N'Color', N'Mortage', N'Position', N'Price', N'RentPrice', N'StreetGroupName', N'StreetName') AND [object_id] = OBJECT_ID(N'[Streets]'))
-          SET IDENTITY_INSERT [Streets] ON;
-      INSERT INTO [Streets] ([Name], [Color], [Mortage], [Position], [Price], [RentPrice], [StreetGroupName], [StreetName])
-      VALUES (N'Baltic', N'purple', 30.0, 3, 60.0, 4.0, N'Mediterranean', NULL),
-      (N'Connecticut', N'lightblue', 60.0, 9, 120.0, 8.0, N'Vermont', NULL),
-      (N'Mediterranean', N'purple', 30.0, 1, 60.0, 2.0, N'Mediterranean', NULL),
-      (N'Oriental', N'lightblue', 50.0, 6, 100.0, 6.0, N'Mediterranean', NULL),
-      (N'Vermont', N'lightblue', 50.0, 8, 100.0, 6.0, N'Vermont', NULL);
-      IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Name', N'Color', N'Mortage', N'Position', N'Price', N'RentPrice', N'StreetGroupName', N'StreetName') AND [object_id] = OBJECT_ID(N'[Streets]'))
-          SET IDENTITY_INSERT [Streets] OFF;
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (43ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'StreeName', N'numberOfHotels', N'numberOfHouses', N'Price', N'RentPrice') AND [object_id] = OBJECT_ID(N'[EstatePrices]'))
-          SET IDENTITY_INSERT [EstatePrices] ON;
-      INSERT INTO [EstatePrices] ([StreeName], [numberOfHotels], [numberOfHouses], [Price], [RentPrice])
-      VALUES (N'Baltic', 1, 0, 50.0, 450.0),
-      (N'Baltic', 0, 1, 50.0, 20.0),
-      (N'Baltic', 0, 2, 50.0, 60.0),
-      (N'Baltic', 0, 3, 50.0, 180.0),
-      (N'Baltic', 0, 4, 50.0, 320.0),
-      (N'Connecticut', 1, 0, 50.0, 600.0),
-      (N'Connecticut', 0, 1, 50.0, 40.0),
-      (N'Connecticut', 0, 2, 50.0, 100.0),
-      (N'Connecticut', 0, 3, 50.0, 300.0),
-      (N'Connecticut', 0, 4, 50.0, 450.0),
-      (N'Mediterranean', 1, 0, 50.0, 250.0),
-      (N'Mediterranean', 0, 1, 50.0, 10.0),
-      (N'Mediterranean', 0, 2, 50.0, 30.0),
-      (N'Mediterranean', 0, 3, 50.0, 90.0),
-      (N'Mediterranean', 0, 4, 50.0, 160.0),
-      (N'Oriental', 1, 0, 50.0, 550.0),
-      (N'Oriental', 0, 1, 50.0, 30.0),
-      (N'Oriental', 0, 2, 50.0, 90.0),
-      (N'Oriental', 0, 3, 50.0, 270.0),
-      (N'Oriental', 0, 4, 50.0, 400.0),
-      (N'Vermont', 1, 0, 50.0, 550.0),
-      (N'Vermont', 0, 1, 50.0, 30.0),
-      (N'Vermont', 0, 2, 50.0, 90.0),
-      (N'Vermont', 0, 3, 50.0, 270.0),
-      (N'Vermont', 0, 4, 50.0, 400.0);
-      IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'StreeName', N'numberOfHotels', N'numberOfHouses', N'Price', N'RentPrice') AND [object_id] = OBJECT_ID(N'[EstatePrices]'))
-          SET IDENTITY_INSERT [EstatePrices] OFF;
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      CREATE INDEX [IX_BoughtStreets_GamePlayerName_GameDateTime] ON [BoughtStreets] ([GamePlayerName], [GameDateTime]);
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      CREATE INDEX [IX_PlayerInterchanges_BuyerPlayerName_PlayerDateTime] ON [PlayerInterchanges] ([BuyerPlayerName], [PlayerDateTime]);
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      CREATE INDEX [IX_Streets_StreetName] ON [Streets] ([StreetName]);
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-      VALUES (N'20231006130658_Initial', N'7.0.11');
-Done.
+Failed executing DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [StreetRelated] (
+    [Name] nvarchar(20) NOT NULL,
+    [NameR] nvarchar(20) NOT NULL,
+    CONSTRAINT [PK_StreetRelated] PRIMARY KEY ([Name], [NameR]),
+    CONSTRAINT [FK_StreetRelated_Streets_Name] FOREIGN KEY ([Name]) REFERENCES [Streets] ([Name]) ON DELETE CASCADE,
+    CONSTRAINT [FK_StreetRelated_Streets_NameR] FOREIGN KEY ([NameR]) REFERENCES [Streets] ([Name]) ON DELETE CASCADE
+);
+Microsoft.Data.SqlClient.SqlException (0x80131904): Introducing FOREIGN KEY constraint 'FK_StreetRelated_Streets_NameR' on table 'StreetRelated' may cause cycles or multiple cascade paths. Specify ON DELETE NO ACTION or ON UPDATE NO ACTION, or modify other FOREIGN KEY constraints.
+Could not create constraint or index. See previous errors.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean isAsync, Int32 timeout, Boolean asyncWrite)
+   at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQuery(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Migrations.MigrationCommand.ExecuteNonQuery(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteNonQuery(IEnumerable`1 migrationCommands, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.Migrate(String targetMigration)
+   at Microsoft.EntityFrameworkCore.Design.Internal.MigrationsOperations.UpdateDatabase(String targetMigration, String connectionString, String contextType)
+   at Microsoft.EntityFrameworkCore.Design.OperationExecutor.UpdateDatabaseImpl(String targetMigration, String connectionString, String contextType)
+   at Microsoft.EntityFrameworkCore.Design.OperationExecutor.UpdateDatabase.<>c__DisplayClass0_0.<.ctor>b__0()
+   at Microsoft.EntityFrameworkCore.Design.OperationExecutor.OperationBase.Execute(Action action)
+ClientConnectionId:ff4c0ec6-500c-4973-922e-81c4b212a8c5
+Error Number:1785,State:0,Class:16
+Introducing FOREIGN KEY constraint 'FK_StreetRelated_Streets_NameR' on table 'StreetRelated' may cause cycles or multiple cascade paths. Specify ON DELETE NO ACTION or ON UPDATE NO ACTION, or modify other FOREIGN KEY constraints.
+Could not create constraint or index. See previous errors.

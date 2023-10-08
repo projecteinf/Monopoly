@@ -13,10 +13,12 @@ namespace mba.Monopoly
         public DbSet<PlayerInterchanges> PlayerInterchanges { get; set; } = default!;
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.ApplyConfiguration(new StreetConfiguration());
+            modelBuilder.ApplyConfiguration(new StreetGroupConfiguration());
             modelBuilder.ApplyConfiguration(new EstatePriceConfiguration());
             modelBuilder.ApplyConfiguration(new GameConfiguration());
             modelBuilder.ApplyConfiguration(new BoughtStreetsConfiguration());
             modelBuilder.ApplyConfiguration(new PlayerInterchangesConfiguration());
+            
         }
       
     }

@@ -55,7 +55,9 @@ namespace Monopoly.Controllers
             {
                 return NotFound();
             }
-            var Game = await _context.Games.FirstOrDefaultAsync(g => g.PlayerName == PlayerName && g.DateTime == DateTime);
+            var Game = await _context.Games.Include(g=>g.LBoughtStreetObj)
+                            .Include(g=>g.LPlayerInterchangesObj)
+                            .FirstOrDefaultAsync(g => g.PlayerName == PlayerName && g.DateTime == DateTime);
 
             // List<BoughtStreets> boughtStreets = await getBoughtStreets(PlayerName, DateTime);
 
@@ -67,7 +69,23 @@ namespace Monopoly.Controllers
             return Game;
         }
 
-        
+        [HttpGet("hasStreet/{PlayerName}/{DateTime}/{StreetName}")]
+        public async Task<ActionResult<bool>> hasStreet(string PlayerName, DateTime DateTime, string StreetName)
+        {
+            if (_context.Games == null)
+            {
+                return NotFound();
+            }
+            var Game = await _context.Games.Include(g=>g.LBoughtStreetObj)
+                            .FirstOrDefaultAsync(g => g.PlayerName == PlayerName && g.DateTime == DateTime);
+
+            if (Game == null)
+            {
+                return BadRequest("Game not found");
+            }
+
+            return hasStreet(Game, DateTime, StreetName);
+        }
 
         [HttpGet("{PlayerName}/{DateTime}/{StreetName}")]
         public async Task<ActionResult<Game>> Buy(string PlayerName, DateTime DateTime, string StreetName)
@@ -100,31 +118,24 @@ namespace Monopoly.Controllers
             Game sellerObj = await _context.Games.Include(g=>g.LBoughtStreetObj)
                                 .FirstOrDefaultAsync(g => g.PlayerName == Seller && g.DateTime == DateTime);
 
-            List<BoughtStreets> boughtStreets = 
-                await _context.BoughtStreets
-                    .Where(bs => bs.GameDateTime == DateTime && bs.StreetName == StreetName
-                            && bs.GamePlayerName==Seller).ToListAsync();
-
-            List<PlayerInterchanges> playerInterchanges = 
-                await _context.PlayerInterchanges
-                    .Where(pi => pi.PlayerDateTime == DateTime && pi.StreetName == StreetName).ToListAsync();
-
-            if (playerInterchanges.Count > 0) {
-                PlayerInterchanges lastInterchange = playerInterchanges.OrderByDescending(pi => pi.InterchangeDateTime).First();
-                if (lastInterchange.BuyerPlayerName != Seller) return BadRequest("Seller has not this street.");
+            if (hasStreet(sellerObj,DateTime,StreetName)) {
+                Street street = await _context.Streets.FindAsync(StreetName);
+                if (street == null) return NotFound("Street not found.");
+                return await interchangeStreet(sellerObj, buyerObj, street, Money);
             }
-            else if (boughtStreets.Count == 0) return BadRequest("Seller has not this street.");
-            
-
-            if (sellerObj == null) return NotFound("Seller not found.");
-            if (sellerObj.LBoughtStreetObj.ToList().Find(bs => bs.StreetName == StreetName) == null) return BadRequest("Seller has not this street.");
-
-
-            Street street = await _context.Streets.FindAsync(StreetName);
-            if (street == null) return NotFound("Street not found.");
-            
-            
-            return await interchangeStreet(sellerObj, buyerObj, street, Money);
+            else return BadRequest("Seller has no street.");
+        }
+        private bool hasStreet(Game Player, DateTime DateTime, string StreetName) {
+            List<PlayerInterchanges> interchanges = _context.PlayerInterchanges.Where(pi => pi.StreetName == StreetName && pi.PlayerDateTime == DateTime).ToList();
+            if (interchanges.Count > 0) {
+                PlayerInterchanges lastInterchange = interchanges.OrderByDescending(pi => pi.InterchangeDateTime).First();
+                if (lastInterchange!=null) return lastInterchange.BuyerPlayerName == Player.PlayerName;
+                else return false;
+            }
+            else {
+                if (Player.LBoughtStreetObj == null) return false;
+                else return Player.LBoughtStreetObj.ToList().Find(bs => bs.StreetName == StreetName) != null;
+            } 
         }
 
         private async Task<ActionResult<PlayerInterchanges>> interchangeStreet(Game seller,Game buyer,Street street,decimal Money) {
@@ -134,12 +145,14 @@ namespace Monopoly.Controllers
             _context.Entry(buyer).State = EntityState.Modified;
             _context.Entry(seller).State = EntityState.Modified;
             
-            /* buyer.LBoughtStreetObj.Add(
-                new BoughtStreets { StreetName = street.Name, GamePlayerName = buyer.PlayerName, 
-                                    GameDateTime = buyer.DateTime, StreetObj = street, GameObj = buyer });
- 
-            seller.LBoughtStreetObj.Remove(seller.LBoughtStreetObj.ToList().Find(bs => bs.StreetName == street.Name));
-            */           
+            if (buyer.LBoughtStreetObj == null) buyer.LBoughtStreetObj = new List<BoughtStreets>();
+            
+            if (buyer.LBoughtStreetObj.ToList().Find(bs => bs.StreetName == street.Name) == null) 
+                buyer.LBoughtStreetObj.Add(
+                    new BoughtStreets { StreetName = street.Name, GamePlayerName = buyer.PlayerName, 
+                                        GameDateTime = buyer.DateTime,
+                                        numHotels = 0, numHouses = 0, StreetObj = street, GameObj = buyer });
+
             
             PlayerInterchanges playerInterchanges = new PlayerInterchanges { 
                     StreetName = street.Name, 
