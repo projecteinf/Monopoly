@@ -20,6 +20,7 @@ namespace mba.Monopoly
                 string[] fields = line.Split(",");
                 string streetName = fields[0];
                 decimal housePrice = decimal.Parse(fields[6]);
+                estatePricesL.Add(CrearStatePrice(streetName, 0, 0, housePrice, decimal.Parse(fields[6])));
                 for(int i=8;i<fields.Length-1;i++) {
                     estatePricesL.Add(CrearStatePrice(streetName, i-7, 0, housePrice, decimal.Parse(fields[i])));
                 }   

@@ -8,14 +8,11 @@ namespace mba.Monopoly {
             List<BoughtStreets> lBoughtStreetObj,
             List<StreetGroup> streetGroups) {   
             
-            foreach (StreetGroup streetGroup in streetGroups) {
-                Console.WriteLine("******************************* Checking: "+streetGroup.Name);
+            foreach (StreetGroup streetGroup in streetGroups) 
                 if (!HasStreet(interchanges, lBoughtStreetObj,streetGroup.Name)) return false;
-            }
-            Console.WriteLine("================================== Checking: "+streetGroups[0].NameR);
+            
             if (!HasStreet(interchanges, lBoughtStreetObj,streetGroups[0].NameR)) return false;
-            return true;
-
+            else return true;
         }
 
 
