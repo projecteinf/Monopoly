@@ -80,7 +80,7 @@ namespace Monopoly.Controllers
         }
 
         [HttpGet("BuildHouse/{PlayerName}/{DateTime}/{StreetName}")]
-        public async Task<ActionResult<Game>> BuildHouse(string PlayerName, DateTime DateTime, string StreetName)
+        public async Task<ActionResult<BoughtStreets>> BuildHouse(string PlayerName, DateTime DateTime, string StreetName)
         {
             Game? game = await _context.Games.
                     Include(g=>g.LBoughtStreetObj).
@@ -99,20 +99,21 @@ namespace Monopoly.Controllers
             if (!allBought) return BadRequest("Seller has not all the streets.");
             else {
                 List<BoughtStreets> boughtStreets = await soldStreets(DateTime);
-                if (!game!.HasAvailableHouse(boughtStreets!.Find(bs=>bs.StreetName==StreetName), street.LEstatePricesObj.ToList())) 
-                    return BadRequest("Seller has no money.");
-                else return BadRequest("OK");
+                if (!game!.HasAvailableHouse(boughtStreets!.Find(bs=>bs.StreetName==StreetName), street.LEstatePricesObj.ToList())) return BadRequest("Seller has no money.");
+                else return await Build(game, boughtStreets!.Find(bs=>bs.StreetName==StreetName && bs.GameDateTime==DateTime),1,0);
             }
-            return BadRequest("ALL BOUGHT "+allBought);
+        }
 
-
-
+        private async Task<ActionResult<BoughtStreets>> Build(Game game, BoughtStreets street, int numHouses, int numHotels) {
+            EstatePrices ep = await _context.EstatePrices.FindAsync(street.StreetName,numHouses,numHotels);
+            game.Money -= ep!.Price;
+            street.numHouses += numHouses;
+            street.numHotels += numHotels;
             
-
-            /* if (!game.HasAvailable(street)) return BadRequest("Seller has no money.");
-            else
-                if (street.Sold(boughtStreets)) return BadRequest("This street is already sold.");
-                else return await boughtStreet(game, street);             */
+            _context.Entry(game).State = EntityState.Modified;
+            _context.Entry(street).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return street;
         }
 
         [HttpGet("{Seller}/{Buyer}/{DateTime}/{StreetName}/{Money}")]
