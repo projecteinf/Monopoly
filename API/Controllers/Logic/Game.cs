@@ -2,6 +2,23 @@ using System.ComponentModel.DataAnnotations;
 
 namespace mba.Monopoly {
     public partial class Game {
+
+        internal bool boughtAllGroup(
+            List<PlayerInterchanges> interchanges, 
+            List<BoughtStreets> lBoughtStreetObj,
+            List<StreetGroup> streetGroups) {   
+            
+            foreach (StreetGroup streetGroup in streetGroups) {
+                Console.WriteLine("******************************* Checking: "+streetGroup.Name);
+                if (!HasStreet(interchanges, lBoughtStreetObj,streetGroup.Name)) return false;
+            }
+            Console.WriteLine("================================== Checking: "+streetGroups[0].NameR);
+            if (!HasStreet(interchanges, lBoughtStreetObj,streetGroups[0].NameR)) return false;
+            return true;
+
+        }
+
+
         internal bool HasStreet(List<PlayerInterchanges> interchanges, ICollection<BoughtStreets>? lBoughtStreetObj, string streetName)
         {
             if (interchanges.Count > 0) {
@@ -16,6 +33,15 @@ namespace mba.Monopoly {
         }
         internal bool HasAvailable(Street street) {
             return this.Money >= street.Price;
+        }
+
+        internal bool HasAvailableHouse(BoughtStreets boughtStreet, List<EstatePrices> estatePrices) {
+            decimal price=estatePrices
+                            .Find(ep => ep.numberOfHotels==boughtStreet.numHotels &&
+                                        ep.numberOfHouses==boughtStreet.numHouses)
+                            .Price;
+            return this.Money >= price;
+            
         }
     }
 }

@@ -14,9 +14,9 @@ namespace mba.Monopoly {
         public decimal Mortage { get; set; }    // Hipoteca
         public decimal RentPrice { get; set; }
         [NotMapped]
-        public ICollection<StreetGroup>? LStreetGroupObj { get; set; }
+        public ICollection<StreetGroup>? LStreetGroupObj { get; set; } = new List<StreetGroup>();
         [NotMapped]
-        public ICollection<StreetGroup>? LStreetGroupObjR { get; set; }
+        public ICollection<StreetGroup>? LStreetGroupObjR { get; set; } = new List<StreetGroup>();
         public ICollection<EstatePrices>? LEstatePricesObj { get; set; }
         public ICollection<BoughtStreets>? LBoughtStreetsObj { get; set; }
     }
