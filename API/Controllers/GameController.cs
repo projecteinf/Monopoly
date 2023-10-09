@@ -95,15 +95,17 @@ namespace Monopoly.Controllers
             
             //List<PlayerInterchanges> interchanges = _context.PlayerInterchanges.Where(pi => pi.StreetName == StreetName && pi.PlayerDateTime == DateTime).ToList();
             
-            if (game!.boughtAllGroup(game!.LPlayerInterchangesObj!.ToList(),game!.LBoughtStreetObj.ToList(),street.LStreetGroupObjR.ToList())) return BadRequest("Seller has not all the streets.");
-            else  {
-                return BadRequest("ALL BOUGHT");
+            bool allBought = game!.boughtAllGroup(game!.LPlayerInterchangesObj!.ToList(),game!.LBoughtStreetObj.ToList(),street.LStreetGroupObjR.ToList());
+            if (!allBought) return BadRequest("Seller has not all the streets.");
+            else {
                 List<BoughtStreets> boughtStreets = await soldStreets(DateTime);
                 if (!game!.HasAvailableHouse(boughtStreets!.Find(bs=>bs.StreetName==StreetName), street.LEstatePricesObj.ToList())) 
                     return BadRequest("Seller has no money.");
                 else return BadRequest("OK");
             }
-                
+            return BadRequest("ALL BOUGHT "+allBought);
+
+
 
             
 

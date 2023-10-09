@@ -27,8 +27,8 @@ namespace mba.Monopoly {
                 else return false;
             } 
             else {
-                if (LBoughtStreetObj == null) return false;
-                else return LBoughtStreetObj.ToList().Find(bs => bs.StreetName == streetName) != null;
+                if (lBoughtStreetObj == null) return false;
+                else return lBoughtStreetObj.ToList().Find(bs => bs.StreetName == streetName) != null;
             }     
         }
         internal bool HasAvailable(Street street) {
