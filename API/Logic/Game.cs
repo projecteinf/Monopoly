@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace mba.Monopoly {
     public partial class Game {
@@ -15,7 +16,8 @@ namespace mba.Monopoly {
             else return true;
         }
 
-
+        internal void Pay(decimal price) => this.Money -= price;
+        
         internal bool HasStreet(List<PlayerInterchanges> interchanges, ICollection<BoughtStreets>? lBoughtStreetObj, string streetName)
         {
             if (interchanges.Count > 0) {
@@ -28,17 +30,12 @@ namespace mba.Monopoly {
                 else return lBoughtStreetObj.ToList().Find(bs => bs.StreetName == streetName) != null;
             }     
         }
-        internal bool HasAvailable(Street street) {
-            return this.Money >= street.Price;
-        }
-
-        internal bool HasAvailableHouse(BoughtStreets boughtStreet, List<EstatePrices> estatePrices) {
-            decimal price=estatePrices
-                            .Find(ep => ep.numberOfHotels==boughtStreet.numHotels &&
-                                        ep.numberOfHouses==boughtStreet.numHouses)
-                            .Price;
-            return this.Money >= price;
+        internal bool EnoughMoney(Street street) => this.Money >= street.Price;
+        
+        internal bool EnoughMoney(BoughtStreets boughtStreet, List<EstatePrices> estatePrices) =>
+            this.Money>= estatePrices.Find(ep => ep.numberOfHotels==boughtStreet.numHotels &&
+                                            ep.numberOfHouses==boughtStreet.numHouses)!.Price;
             
-        }
+        
     }
 }

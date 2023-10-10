@@ -9,5 +9,9 @@ namespace mba.Monopoly {
         public decimal Price { get; set; }
         public decimal RentPrice { get; set; }
         public virtual Street? StreetObj { get; set; }
+
+        public static async ValueTask<EstatePrices> GetById(DataContext context,string streetName, int numHouses, int numHotels) {
+            return await context.EstatePrices.FindAsync(streetName,numHouses,numHotels)!;
+        }   
     }
 }
