@@ -52,5 +52,42 @@ namespace mba.Monopoly {
 
             return this;
         }
+
+        public async Task<ActionResult<PlayerInterchanges>> InterchangeStreet(DataContext context, Game seller,Street street,decimal Money) {
+            this.Pay(Money);
+            seller.Pay(-Money);
+
+            context.Entry(this).State = EntityState.Modified;
+            context.Entry(seller).State = EntityState.Modified;
+            
+            BoughtStreets? boughtStreets = await context.BoughtStreets.FirstOrDefaultAsync(bs => bs.StreetName == street.Name && bs.GameDateTime == seller.DateTime);
+
+            if (this.LBoughtStreetObj == null) this.LBoughtStreetObj = new List<BoughtStreets>();
+            
+            if (this.LBoughtStreetObj.ToList().Find(bs => bs.StreetName == street.Name) == null) 
+                this.LBoughtStreetObj.Add(
+                    new BoughtStreets { StreetName = street.Name, GamePlayerName = this.PlayerName, 
+                                        GameDateTime = this.DateTime,
+                                        numHotels = boughtStreets!.numHotels, 
+                                        numHouses = boughtStreets.numHouses, StreetObj = street, GameObj = this });
+
+            PlayerInterchanges playerInterchanges = new PlayerInterchanges { 
+                    StreetName = street.Name, 
+                    SellerPlayerName = seller.PlayerName, 
+                    PlayerDateTime = seller.DateTime,
+                    BuyerPlayerName = this.PlayerName,
+                    InterchangeDateTime = DateTime.Now, 
+                    Price = Money };
+
+            if (this.LPlayerInterchangesObj == null) this.LPlayerInterchangesObj = new List<PlayerInterchanges>();
+            this.LPlayerInterchangesObj.Add(playerInterchanges);
+           
+
+            await context.SaveChangesAsync();  
+            
+
+            return playerInterchanges;
+        }
+        
     }
 }

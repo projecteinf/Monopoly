@@ -18,5 +18,8 @@ namespace mba.Monopoly {
         [NotMapped]
         public Game? GameObj { get; set; }
         
+        public static async Task<List<PlayerInterchanges>> GetAll(DataContext context, DateTime dateTime) =>
+            context.PlayerInterchanges.Where(pi => pi.PlayerDateTime == dateTime).ToList();
+        
     }
 }

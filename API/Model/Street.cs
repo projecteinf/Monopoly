@@ -28,5 +28,7 @@ namespace mba.Monopoly {
                 .Include(p => p.LEstatePricesObj)
                 .FirstOrDefaultAsync(s => s.Name==name)!;
 
+        public static async Task<List<PlayerInterchanges>> Interchanges(DataContext context,string streetName, DateTime dateTime) =>
+            context.PlayerInterchanges.Where(pi => pi.StreetName == streetName && pi.PlayerDateTime == dateTime).ToList();
     }
 }
