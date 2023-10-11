@@ -100,30 +100,16 @@ namespace Monopoly.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
        
         [HttpPost]
-        public async Task<ActionResult<Game>> PostGame(Game Game)
+        public async Task<ActionResult<Game>> PostGame(Game game)
         {
-          if (_context.Games == null)
-          {
-              return Problem("Entity set 'DataContext.Games'  is null.");
-          }
-            _context.Games.Add(Game);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (GameExists(Game.PlayerName, Game.DateTime))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
+
+            try { await Game.Save(_context, game); } 
+            catch (DbUpdateException) {
+                if (Game.Exists(_context,game.PlayerName,game.DateTime)) return Conflict();
+                else throw;
             }
 
-            return CreatedAtAction("GetGame", new { PlayerName=Game.PlayerName, DateTime=Game.DateTime }, Game);
+            return CreatedAtAction("GetGame", new { PlayerName=game.PlayerName, DateTime=game.DateTime }, game);
         } 
 
 

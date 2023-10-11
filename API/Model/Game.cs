@@ -37,6 +37,14 @@ namespace mba.Monopoly {
             return game!;
         }
 
+        public static async ValueTask<Game> Save(DataContext context, Game game) {
+            context.Games.Add(game);
+            await context.SaveChangesAsync(); 
+            return game;
+        }
+        public static bool Exists(DataContext context, string playerName, DateTime dateTime) {
+            return (context.Games?.Any(g => g.PlayerName==playerName && g.DateTime==dateTime)).GetValueOrDefault();
+        }
         public async Task<ActionResult<Game>> Buy(DataContext context,Street street) {
             this.Pay(street.Price);
 

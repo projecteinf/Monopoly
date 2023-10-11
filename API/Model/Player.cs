@@ -20,8 +20,7 @@ namespace mba.Monopoly {
             await context.SaveChangesAsync(); 
             return player;
         }
-        public static bool Exists(DataContext context, string name) {
-            return (context.Players?.Any(e => e.Name == name)).GetValueOrDefault();
-        }
+        public static bool Exists(DataContext context, string name) => (context.Players?.Any(e => e.Name == name)).GetValueOrDefault();
+        
     }
 }
